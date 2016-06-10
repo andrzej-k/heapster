@@ -2490,8 +2490,8 @@
                   }
                 ]
               ],
-              "measurement": "custom//intel/procfs/cpu/0/system_percentage",
-              "query": "SELECT mean(\"value\") FROM \"custom//intel/procfs/cpu/0/system_percentage\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
+              "measurement": "custom/intel/procfs/cpu/0/system_percentage",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/0/system_percentage\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
             },
             {
               "refId": "B",
@@ -2538,8 +2538,8 @@
                   }
                 ]
               ],
-              "measurement": "custom//intel/procfs/cpu/0/system_jiffies",
-              "query": "SELECT mean(\"value\") FROM \"custom//intel/procfs/cpu/0/system_jiffies\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
+              "measurement": "custom/intel/procfs/cpu/0/system_jiffies",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/0/system_jiffies\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
             }
           ],
           "aliasColors": {},
@@ -2653,8 +2653,8 @@
                   }
                 ]
               ],
-              "measurement": "custom//intel/procfs/cpu/mock/version_info",
-              "query": "SELECT mean(\"value\") FROM \"custom//intel/procfs/cpu/mock/version_info\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
+              "measurement": "custom/intel/procfs/cpu/mock/version_info",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/mock/version_info\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
             }
           ],
           "aliasColors": {},
@@ -2756,8 +2756,8 @@
                   }
                 ]
               ],
-              "measurement": "custom//intel/mysql/mysql_innodb_data/writes",
-              "query": "SELECT mean(\"value\") FROM \"custom//intel/mysql/mysql_innodb_data/writes\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
+              "measurement": "custom/intel/mysql/mysql_innodb_data/writes",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/mysql/mysql_innodb_data/writes\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
             },
             {
               "refId": "B",
@@ -2792,8 +2792,8 @@
                   }
                 ]
               ],
-              "measurement": "custom//intel/mysql/mysql_innodb_rows/read",
-              "query": "SELECT mean(\"value\") FROM \"custom//intel/mysql/mysql_innodb_rows/read\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
+              "measurement": "custom/intel/mysql/mysql_innodb_rows/read",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/mysql/mysql_innodb_rows/read\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
             },
             {
               "refId": "C",
@@ -2828,8 +2828,8 @@
                   }
                 ]
               ],
-              "measurement": "custom//intel/mysql/threads/connected",
-              "query": "SELECT mean(\"value\") FROM \"custom//intel/mysql/threads/connected\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
+              "measurement": "custom/intel/mysql/threads/connected",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/mysql/threads/connected\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
             },
             {
               "refId": "D",
@@ -2864,8 +2864,8 @@
                   }
                 ]
               ],
-              "measurement": "custom//intel/mysql/threads/running",
-              "query": "SELECT mean(\"value\") FROM \"custom//intel/mysql/threads/running\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
+              "measurement": "custom/intel/mysql/threads/running",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/mysql/threads/running\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
             },
             {
               "refId": "E",
@@ -2900,8 +2900,8 @@
                   }
                 ]
               ],
-              "measurement": "custom//intel/mysql/mysql_octets/rx",
-              "query": "SELECT mean(\"value\") FROM \"custom//intel/mysql/mysql_octets/rx\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
+              "measurement": "custom/intel/mysql/mysql_octets/rx",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/mysql/mysql_octets/rx\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
             },
             {
               "refId": "F",
@@ -2936,8 +2936,8 @@
                   }
                 ]
               ],
-              "measurement": "custom//intel/mysql/mysql_octets/tx",
-              "query": "SELECT mean(\"value\") FROM \"custom//intel/mysql/mysql_octets/tx\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
+              "measurement": "custom/intel/mysql/mysql_octets/tx",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/mysql/mysql_octets/tx\" WHERE $timeFilter GROUP BY time($interval) fill(null)"
             }
           ],
           "aliasColors": {},
