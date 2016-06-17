@@ -2853,7 +2853,7 @@
                 ]
               ],
               "measurement": "custom/intel/procfs/cpu/mock/version_info",
-              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/mock/version_info/mean\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/mock/version_info\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
             }
           ],
           "aliasColors": {},
