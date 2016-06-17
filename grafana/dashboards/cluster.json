@@ -2392,7 +2392,7 @@
       "collapse": false,
       "panels": [
         {
-          "title": "Snap - CPU System Percentage and System Jiffies",
+          "title": "Snap - CPU System Percentage",
           "error": false,
           "span": 12,
           "editable": true,
@@ -2447,6 +2447,7 @@
           "targets": [
             {
               "refId": "A",
+              "alias": "Mean",
               "dsType": "influxdb",
               "resultFormat": "time_series",
               "tags": [
@@ -2490,57 +2491,254 @@
                   }
                 ]
               ],
-              "measurement": "custom/intel/procfs/cpu/0/system_percentage",
-              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/0/system_percentage\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
+              "measurement": "custom/intel/procfs/cpu/0/system_percentage/mean",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/0/system_percentage/mean\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
             },
-            {
-              "refId": "B",
+            {    
+              "refId": "B", 
+              "alias": "Median",
               "dsType": "influxdb",
               "resultFormat": "time_series",
               "tags": [
-                {
+                {    
                   "key": "type",
-                  "operator": "=",
+                  "operator": "=", 
                   "value": "node"
-                },
-                {
+                },   
+                {    
                   "condition": "AND",
                   "key": "nodename",
                   "operator": "=~",
                   "value": "/$nodename$/"
-                }
-              ],
+                }    
+              ],   
               "groupBy": [
-                {
+                {    
                   "type": "time",
                   "params": [
                     "$interval"
-                  ]
-                },
-                {
+                  ]    
+                },   
+                {    
                   "type": "fill",
                   "params": [
                     "null"
-                  ]
-                }
-              ],
+                  ]    
+                }    
+              ],   
               "select": [
-                [
-                  {
+                [    
+                  {    
                     "type": "field",
                     "params": [
                       "value"
-                    ]
-                  },
-                  {
+                    ]    
+                  },   
+                  {    
                     "type": "mean",
                     "params": []
-                  }
-                ]
-              ],
-              "measurement": "custom/intel/procfs/cpu/0/system_jiffies",
-              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/0/system_jiffies\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
-            }
+                  }    
+                ]    
+              ],   
+              "measurement": "custom/intel/procfs/cpu/0/system_percentage/median",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/0/system_percentage/median\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
+            }, 
+            {    
+              "refId": "C", 
+              "alias": "Standard Deviation",
+              "dsType": "influxdb",
+              "resultFormat": "time_series",
+              "tags": [
+                {    
+                  "key": "type",
+                  "operator": "=", 
+                  "value": "node"
+                },   
+                {    
+                  "condition": "AND",
+                  "key": "nodename",
+                  "operator": "=~",
+                  "value": "/$nodename$/"
+                }    
+              ],   
+              "groupBy": [
+                {    
+                  "type": "time",
+                  "params": [
+                    "$interval"
+                  ]    
+                },   
+                {    
+                  "type": "fill",
+                  "params": [
+                    "null"
+                  ]    
+                }    
+              ],   
+              "select": [
+                [    
+                  {    
+                    "type": "field",
+                    "params": [
+                      "value"
+                    ]    
+                  },   
+                  {    
+                    "type": "mean",
+                    "params": []
+                  }    
+                ]    
+              ],   
+              "measurement": "custom/intel/procfs/cpu/0/system_percentage/stddev",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/0/system_percentage/stddev\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
+            }, 
+            {    
+              "refId": "D", 
+              "alias": "Variance",
+              "dsType": "influxdb",
+              "resultFormat": "time_series",
+              "tags": [
+                {    
+                  "key": "type",
+                  "operator": "=", 
+                  "value": "node"
+                },   
+                {    
+                  "condition": "AND",
+                  "key": "nodename",
+                  "operator": "=~",
+                  "value": "/$nodename$/"
+                }    
+              ],   
+              "groupBy": [
+                {    
+                  "type": "time",
+                  "params": [
+                    "$interval"
+                  ]    
+                },   
+                {    
+                  "type": "fill",
+                  "params": [
+                    "null"
+                  ]    
+                }    
+              ],   
+              "select": [
+                [    
+                  {    
+                    "type": "field",
+                    "params": [
+                      "value"
+                    ]    
+                  },   
+                  {    
+                    "type": "mean",
+                    "params": []
+                  }    
+                ]    
+              ],   
+              "measurement": "custom/intel/procfs/cpu/0/system_percentage/var",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/0/system_percentage/var\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
+            }, 
+            {    
+              "refId": "E", 
+              "alias": "95%-ile",
+              "dsType": "influxdb",
+              "resultFormat": "time_series",
+              "tags": [
+                {    
+                  "key": "type",
+                  "operator": "=", 
+                  "value": "node"
+                },   
+                {    
+                  "condition": "AND",
+                  "key": "nodename",
+                  "operator": "=~",
+                  "value": "/$nodename$/"
+                }    
+              ],   
+              "groupBy": [
+                {    
+                  "type": "time",
+                  "params": [
+                    "$interval"
+                  ]    
+                },   
+                {    
+                  "type": "fill",
+                  "params": [
+                    "null"
+                  ]    
+                }    
+              ],   
+              "select": [
+                [    
+                  {    
+                    "type": "field",
+                    "params": [
+                      "value"
+                    ]    
+                  },   
+                  {    
+                    "type": "mean",
+                    "params": []
+                  }    
+                ]    
+              ],   
+              "measurement": "custom/intel/procfs/cpu/0/system_percentage/95%-ile",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/0/system_percentage/95%-ile\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
+            }, 
+            {    
+              "refId": "F", 
+              "alias": "99%-ile",
+              "dsType": "influxdb",
+              "resultFormat": "time_series",
+              "tags": [
+                {    
+                  "key": "type",
+                  "operator": "=", 
+                  "value": "node"
+                },   
+                {    
+                  "condition": "AND",
+                  "key": "nodename",
+                  "operator": "=~",
+                  "value": "/$nodename$/"
+                }    
+              ],   
+              "groupBy": [
+                {    
+                  "type": "time",
+                  "params": [
+                    "$interval"
+                  ]    
+                },   
+                {    
+                  "type": "fill",
+                  "params": [
+                    "null"
+                  ]    
+                }    
+              ],   
+              "select": [
+                [    
+                  {    
+                    "type": "field",
+                    "params": [
+                      "value"
+                    ]    
+                  },   
+                  {    
+                    "type": "mean",
+                    "params": []
+                  }    
+                ]    
+              ],   
+              "measurement": "custom/intel/procfs/cpu/0/system_percentage/99%-ile",
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/0/system_percentage/99%-ile\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
+            } 
           ],
           "aliasColors": {},
           "seriesOverrides": [],
@@ -2610,6 +2808,7 @@
           "targets": [
             {
               "refId": "A",
+              "alias": "Plugin Version",
               "dsType": "influxdb",
               "resultFormat": "time_series",
               "tags": [
@@ -2654,7 +2853,7 @@
                 ]
               ],
               "measurement": "custom/intel/procfs/cpu/mock/version_info",
-              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/mock/version_info\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
+              "query": "SELECT mean(\"value\") FROM \"custom/intel/procfs/cpu/mock/version_info/mean\" WHERE \"type\" = 'node' AND \"nodename\" =~ /$nodename$/ AND $timeFilter GROUP BY time($interval) fill(null)"
             }
           ],
           "aliasColors": {},
@@ -2725,6 +2924,7 @@
           "targets": [
             {
               "refId": "A",
+              "alias": "Data Writes",
               "dsType": "influxdb",
               "resultFormat": "time_series",
               "tags": [],
@@ -2761,6 +2961,7 @@
             },
             {
               "refId": "B",
+              "alias": "Rows Read",
               "dsType": "influxdb",
               "resultFormat": "time_series",
               "tags": [],
@@ -2797,6 +2998,7 @@
             },
             {
               "refId": "C",
+              "alias": "Connected Threads",
               "dsType": "influxdb",
               "resultFormat": "time_series",
               "tags": [],
@@ -2833,6 +3035,7 @@
             },
             {
               "refId": "D",
+              "alias": "Running Threads",
               "dsType": "influxdb",
               "resultFormat": "time_series",
               "tags": [],
@@ -2869,6 +3072,7 @@
             },
             {
               "refId": "E",
+              "alias": "Octets Rx",
               "dsType": "influxdb",
               "resultFormat": "time_series",
               "tags": [],
@@ -2905,6 +3109,7 @@
             },
             {
               "refId": "F",
+              "alias": "Octets Tx",
               "dsType": "influxdb",
               "resultFormat": "time_series",
               "tags": [],
