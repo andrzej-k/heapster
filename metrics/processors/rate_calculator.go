@@ -62,6 +62,12 @@ func (this *RateCalculator) Process(batch *core.DataBatch) (*core.DataBatch, err
 						newVal := 1000 * (metricValNew.IntValue - metricValOld.IntValue) /
 							(newMs.ScrapeTime.UnixNano() - oldMs.ScrapeTime.UnixNano())
 
+                                                getLimitHere
+					        if limit != 0 {
+                                                limit = newVal
+                                                }
+
+                                                newVal = int(newVal / limit)
 						newMs.MetricValues[targetMetric.MetricDescriptor.Name] = core.MetricValue{
 							ValueType:  core.ValueInt64,
 							MetricType: core.MetricGauge,
