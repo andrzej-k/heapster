@@ -918,7 +918,7 @@
       }
     ],
     "time": {
-      "from": "now-30m",
+      "from": "now-15m",
       "to": "now"
     },
     "timepicker": {
@@ -1051,7 +1051,7 @@
     "annotations": {
       "list": []
     },
-    "refresh": false,
+    "refresh": "20s",
     "schemaVersion": 8,
     "version": 14,
     "links": []
