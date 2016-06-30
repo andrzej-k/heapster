@@ -193,7 +193,7 @@ func updateContainerResourcesAndLimits(metricSet *core.MetricSet, container kube
         metricSet.MetricValues[core.MetricCpuUtilization.MetricDescriptor.Name] = core.MetricValue {
                 ValueType:  core.ValueFloat,
                 MetricType: core.MetricGauge,
-                FloatValue: cpuUtil
+                FloatValue: cpuUtil,
         }
 
 	if val, found := limits[kube_api.ResourceMemory]; found {
