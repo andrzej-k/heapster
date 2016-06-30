@@ -186,7 +186,7 @@ func updateContainerResourcesAndLimits(metricSet *core.MetricSet, container kube
         // TODO handle return values from getting from map
         cpuUsageRate := metricSet.MetricValues[core.MetricCpuUsageRate.Name].IntValue
         cpuLimit := metricSet.MetricValues[core.MetricCpuLimit.Name].IntValue
-        cpuUtil := 7777.0
+        cpuUtil := float32(7777.0)
         if cpuLimit > 0 {
               cpuUtil = float32(100 * cpuUsageRate / cpuLimit)
         }
