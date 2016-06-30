@@ -69,14 +69,14 @@ func (this *RateCalculator) Process(batch *core.DataBatch) (*core.DataBatch, err
 						}
 
                                                 // populate CPU utilization metric also (in percentage of limit)
-                                                cpuUtil := 7200
-                                                limit, ok := newMs.MetricValues[core.MetricCpuLimit.MetricDescriptor.Name].IntValue
+                                                cpuUtil := float32(7200)
+                                                limit, ok := newMs.MetricValues[core.MetricCpuLimit.MetricDescriptor.Name]
                                                 if ok {
-                                                        if limit > 0 {
-                                                                 cpuUtil = float32(100 * newVal / limit)
+                                                        if limit.IntValue > 0 {
+                                                                 cpuUtil = float32(100 * newVal / limit.IntValue)
                                                         }
                                                 } else {
-                                                        cpuUtil = -7777
+                                                        cpuUtil = float32(-7777)
                                                 }
 
 						newMs.MetricValues[core.MetricCpuUtilization.MetricDescriptor.Name] = core.MetricValue{
