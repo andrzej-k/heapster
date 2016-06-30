@@ -69,10 +69,10 @@ func (this *RateCalculator) Process(batch *core.DataBatch) (*core.DataBatch, err
 						}
 
                                                 // populate CPU utilization metric also
-                                                cpuUtil := newVal / 777
+                                                cpuUtil := float32(newVal / 777)
 
 						newMs.MetricValues[core.MetricCpuUtilization.MetricDescriptor.Name] = core.MetricValue{
-							ValueType:  core.Float,
+							ValueType:  core.ValueFloat,
 							MetricType: core.MetricGauge,
 							FloatValue: cpuUtil,
 						}
