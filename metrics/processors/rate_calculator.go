@@ -67,24 +67,6 @@ func (this *RateCalculator) Process(batch *core.DataBatch) (*core.DataBatch, err
 							MetricType: core.MetricGauge,
 							IntValue:   newVal,
 						}
-
-                                                // populate CPU utilization metric also (in percentage of limit)
-                                                cpuUtil := float32(7200)
-                                                limit, ok := newMs.MetricValues[core.MetricCpuLimit.MetricDescriptor.Name]
-                                                if ok {
-                                                        if limit.IntValue > 0 {
-                                                                 cpuUtil = float32(100 * newVal / limit.IntValue)
-                                                        }
-                                                } else {
-                                                        cpuUtil = float32(-7777)
-                                                }
-
-						newMs.MetricValues[core.MetricCpuUtilization.MetricDescriptor.Name] = core.MetricValue{
-							ValueType:  core.ValueFloat,
-							MetricType: core.MetricGauge,
-							FloatValue: cpuUtil,
-						}
-
 					} else if targetMetric.MetricDescriptor.ValueType == core.ValueFloat {
 						newVal := 1e9 * float32(metricValNew.IntValue-metricValOld.IntValue) /
 							float32(newMs.ScrapeTime.UnixNano()-oldMs.ScrapeTime.UnixNano())

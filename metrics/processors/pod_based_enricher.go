@@ -181,6 +181,21 @@ func updateContainerResourcesAndLimits(metricSet *core.MetricSet, container kube
 	} else {
 		metricSet.MetricValues[core.MetricCpuLimit.Name] = intValue(0)
 	}
+
+        // populate CPU utilization (in percentage of limit)
+        // TODO handle return values from getting from map
+        cpuUsageRate := metricSet.MetricValues[core.MetricCpuUsageRate.Name].IntValue
+        cpuLimit := metricSet.MetricValues[core.MetricCpuLimit.Name].IntValue
+        cpuUtil := 7777.0
+        if cpuLimit > 0 {
+              cpuUtil = float32(100 * cpuUsageRate / cpuLimit)
+        }
+        metricSet.MetricValues[core.MetricCpuUtilization.MetricDescriptor.Name] = core.MetricValue {
+                ValueType:  core.ValueFloat,
+                MetricType: core.MetricGauge,
+                FloatValue: cpuUtil
+        }
+
 	if val, found := limits[kube_api.ResourceMemory]; found {
 		metricSet.MetricValues[core.MetricMemoryLimit.Name] = intValue(val.Value())
 	} else {
