@@ -67,6 +67,7 @@ func (this *RateCalculator) Process(batch *core.DataBatch) (*core.DataBatch, err
 							MetricType: core.MetricGauge,
 							IntValue:   newVal,
 						}
+
 					} else if targetMetric.MetricDescriptor.ValueType == core.ValueFloat {
 						newVal := 1e9 * float32(metricValNew.IntValue-metricValOld.IntValue) /
 							float32(newMs.ScrapeTime.UnixNano()-oldMs.ScrapeTime.UnixNano())

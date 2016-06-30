@@ -16,6 +16,7 @@ package processors
 
 import (
 	"fmt"
+        "math"
 
 	"github.com/golang/glog"
 
@@ -182,11 +183,14 @@ func updateContainerResourcesAndLimits(metricSet *core.MetricSet, container kube
 		metricSet.MetricValues[core.MetricCpuLimit.Name] = intValue(0)
 	}
 
-        // populate CPU utilization (in percentage of limit)
-        // TODO handle return values from getting from map
+        // populate CPU utilization (in percentage of limit or request)
         cpuUsageRate := metricSet.MetricValues[core.MetricCpuUsageRate.Name].IntValue
         cpuLimit := metricSet.MetricValues[core.MetricCpuLimit.Name].IntValue
-        cpuUtil := float32(7777.0)
+        cpuRequest := metricSet.MetricValues[core.MetricCpuRequest.Name].IntValue
+        cpuLimit = math.Max(cpuLimit, cpuRequest)
+
+        // Default assumption is that there is no Limit or Request set on CPU
+        cpuUtil := float32(100.0)
         if cpuLimit > 0 {
               cpuUtil = float32(100 * cpuUsageRate / cpuLimit)
         }
