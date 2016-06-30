@@ -47,6 +47,7 @@ var AdditionalMetrics = []Metric{
 // Computed based on corresponding StandardMetrics.
 var RateMetrics = []Metric{
 	MetricCpuUsageRate,
+	MetricCpuUtilization,
 	MetricMemoryPageFaultsRate,
 	MetricMemoryMajorPageFaultsRate,
 	MetricNetworkRxRate,
@@ -318,6 +319,16 @@ var MetricCpuUsageRate = Metric{
 		Description: "CPU usage on all cores in millicores",
 		Type:        MetricGauge,
 		ValueType:   ValueInt64,
+		Units:       UnitsCount,
+	},
+}
+
+var MetricCpuUtilization = Metric{
+	MetricDescriptor: MetricDescriptor{
+		Name:        "cpu/utilization",
+		Description: "CPU utilization as a percentage of limit",
+		Type:        MetricGauge,
+		ValueType:   ValueFloat,
 		Units:       UnitsCount,
 	},
 }

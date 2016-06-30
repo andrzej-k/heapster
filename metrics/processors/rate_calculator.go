@@ -62,16 +62,19 @@ func (this *RateCalculator) Process(batch *core.DataBatch) (*core.DataBatch, err
 						newVal := 1000 * (metricValNew.IntValue - metricValOld.IntValue) /
 							(newMs.ScrapeTime.UnixNano() - oldMs.ScrapeTime.UnixNano())
 
-                                                getLimitHere
-					        if limit != 0 {
-                                                limit = newVal
-                                                }
-
-                                                newVal = int(newVal / limit)
 						newMs.MetricValues[targetMetric.MetricDescriptor.Name] = core.MetricValue{
 							ValueType:  core.ValueInt64,
 							MetricType: core.MetricGauge,
 							IntValue:   newVal,
+						}
+
+                                                // populate CPU utilization metric also
+                                                cpuUtil := newVal / 777
+
+						newMs.MetricValues[core.MetricCpuUtilization.MetricDescriptor.Name] = core.MetricValue{
+							ValueType:  core.Float,
+							MetricType: core.MetricGauge,
+							FloatValue: cpuUtil,
 						}
 
 					} else if targetMetric.MetricDescriptor.ValueType == core.ValueFloat {
